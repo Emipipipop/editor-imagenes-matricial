@@ -55,7 +55,7 @@ const {
  * const matriz = imagenAMatriz('imagenes/entrada/test_pequeña.png');
  * // matriz[0][0] = {r: 0, g: 0, b: 128, a: 255}
  */
-// ejercicio  1 terminado
+// ejercicio 1 acabado y verificado
   const rutaImagen = 'C:/Users/esqui/OneDrive/Documentos/TecDeSW/Primer Cuatrimestre/Fundamentos de álgebra/Github/imagenmt.png';
 function imagenAMatriz(rutaImagen) {
   // TODO: Implementar la conversión de PNG a matriz
