@@ -55,40 +55,30 @@ const {
  * const matriz = imagenAMatriz('imagenes/entrada/test_pequeña.png');
  * // matriz[0][0] = {r: 0, g: 0, b: 128, a: 255}
  */
+// ejercicio 1 acabado
+  const rutaImagen = 'C:/Users/esqui/OneDrive/Documentos/TecDeSW/Primer Cuatrimestre/Fundamentos de álgebra/Github/imagenmt.png';
 function imagenAMatriz(rutaImagen) {
   // TODO: Implementar la conversión de PNG a matriz
+  const buffer = fs.readFileSync(rutaImagen);
+  const png = PNG.sync.read(buffer);
+  const matriz = [];
   
-  // 1. Leer el archivo PNG
-  // const buffer = fs.readFileSync(rutaImagen);
-  // const png = PNG.sync.read(buffer);
+  for (let y = 0; y < png.height; y++) {
+    const fila = [];
+    for (let x = 0; x < png.width; x++) {
+      const idx = (png.width * y + x) << 2;
+      const pixel = {
+        r: png.data[idx],
+        g: png.data[idx + 1],
+        b: png.data[idx + 2],
+        a: png.data[idx + 3]
+      };
+      fila.push(pixel);
+    }
+    matriz.push(fila);
+  }
   
-  // 2. Crear la matriz vacía
-  // const matriz = [];
-  
-  // 3. Recorrer cada fila (y) y cada columna (x)
-  // for (let y = 0; y < png.height; y++) {
-  //   const fila = [];
-  //   for (let x = 0; x < png.width; x++) {
-  //     // 4. Calcular el índice en el buffer
-  //     const idx = (png.width * y + x) << 2; // equivalente a * 4
-  //     
-  //     // 5. Extraer los valores RGBA
-  //     const pixel = {
-  //       r: png.data[idx],
-  //       g: png.data[idx + 1],
-  //       b: png.data[idx + 2],
-  //       a: png.data[idx + 3]
-  //     };
-  //     
-  //     fila.push(pixel);
-  //   }
-  //   matriz.push(fila);
-  // }
-  
-  // 6. Retornar la matriz
-  // return matriz;
-  
-  return []; // REEMPLAZAR CON TU CÓDIGO
+  return matriz;
 }
 
 /**
