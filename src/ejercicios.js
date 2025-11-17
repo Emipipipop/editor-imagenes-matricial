@@ -563,16 +563,63 @@ function aplicarSepia(matriz) {
  * const bordes = detectarBordes(matriz, 50);
  */
 function detectarBordes(matriz, umbral = 50) {
-  // TODO: Implementar detección de bordes
+function copiarMatriz(matriz) {
+    return matriz.map(fila => fila.map(pixel => ({...pixel})));
+  }
   
-  // 1. Convertir a escala de grises primero
-  // const grises = convertirEscalaGrises(matriz);
+  function limitarValorColor(valor) {
+    return Math.max(0, Math.min(255, Math.round(valor)));
+  }
   
-  // 2. Para cada pixel (excepto bordes de la imagen):
-  //    - Comparar con pixel derecho y pixel inferior
-  //    - Si diferencia > umbral, marcar como borde
+  function convertirEscalaGrises(matriz) {
+    const resultado = copiarMatriz(matriz);
+    
+    for (let i = 0; i < resultado.length; i++) {
+      for (let j = 0; j < resultado[i].length; j++) {
+        const gris = 0.299 * matriz[i][j].r + 0.587 * matriz[i][j].g + 0.114 * matriz[i][j].b;
+        const valorGris = limitarValorColor(gris);
+        resultado[i][j] = {
+          r: valorGris,
+          g: valorGris,
+          b: valorGris,
+          a: matriz[i][j].a
+        };
+      }
+    }
+    
+    return resultado;
+  }
   
-  return []; // REEMPLAZAR
+  const grises = convertirEscalaGrises(matriz);
+  const resultado = copiarMatriz(grises);
+  const filas = grises.length;
+  const columnas = grises[0].length;
+  
+  for (let i = 0; i < filas - 1; i++) {
+    for (let j = 0; j < columnas - 1; j++) {
+      const diffDerecha = Math.abs(grises[i][j].r - grises[i][j + 1].r);
+      const diffAbajo = Math.abs(grises[i][j].r - grises[i + 1][j].r);
+      const maxDiff = Math.max(diffDerecha, diffAbajo);
+      
+      const valor = maxDiff > umbral ? 255 : 0;
+      resultado[i][j] = {
+        r: valor,
+        g: valor,
+        b: valor,
+        a: grises[i][j].a
+      };
+    }
+  }
+  
+  for (let i = 0; i < filas; i++) {
+    resultado[i][columnas - 1] = { r: 0, g: 0, b: 0, a: 255 };
+  }
+  
+  for (let j = 0; j < columnas; j++) {
+    resultado[filas - 1][j] = { r: 0, g: 0, b: 0, a: 255 };
+  }
+  
+  return resultado;
 }
 
 // ============================================
