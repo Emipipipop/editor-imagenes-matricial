@@ -394,9 +394,13 @@ function voltearHorizontal(matriz) {
  * const invertido = voltearVertical(matriz);
  */
 function voltearVertical(matriz) {
-  // TODO: Implementar volteo vertical
+   function copiarMatriz(matriz) {
+    return matriz.map(fila => fila.map(pixel => ({...pixel})));
+  }
   
-  return []; // REEMPLAZAR
+  const resultado = copiarMatriz(matriz);
+  
+  return resultado.reverse();
 }
 
 /**
