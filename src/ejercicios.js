@@ -100,41 +100,55 @@ function imagenAMatriz(rutaImagen) {
  * matrizAImagen(matriz, 'imagenes/salida/copia.png');
  */
 function matrizAImagen(matriz, rutaSalida) {
-  // TODO: Implementar la conversión de matriz a PNG
+  const fs = require('fs');
+  const PNG = require('pngjs').PNG;
+  const path = require('path');
   
-  // 1. Validar la matriz
-  // validarMatriz(matriz);
+  function validarMatriz(matriz) {
+    if (!Array.isArray(matriz) || matriz.length === 0) {
+      throw new Error('La matriz debe ser un array no vacío');
+    }
+  }
   
-  // 2. Obtener dimensiones
-  // const dims = obtenerDimensiones(matriz);
+  function obtenerDimensiones(matriz) {
+    return {
+      filas: matriz.length,
+      columnas: matriz[0].length
+    };
+  }
   
-  // 3. Crear el PNG
-  // const png = new PNG({
-  //   width: dims.columnas,
-  //   height: dims.filas
-  // });
+  function limitarValorColor(valor) {
+    return Math.max(0, Math.min(255, Math.round(valor)));
+  }
   
-  // 4. Llenar png.data
-  // for (let y = 0; y < dims.filas; y++) {
-  //   for (let x = 0; x < dims.columnas; x++) {
-  //     const idx = (dims.columnas * y + x) << 2;
-  //     const pixel = matriz[y][x];
-  //     
-  //     png.data[idx] = limitarValorColor(pixel.r);
-  //     png.data[idx + 1] = limitarValorColor(pixel.g);
-  //     png.data[idx + 2] = limitarValorColor(pixel.b);
-  //     png.data[idx + 3] = limitarValorColor(pixel.a);
-  //   }
-  // }
+  function asegurarDirectorio(directorio) {
+    if (!fs.existsSync(directorio)) {
+      fs.mkdirSync(directorio, { recursive: true });
+    }
+  }
   
-  // 5. Asegurar que existe el directorio de salida
-  // asegurarDirectorio(path.dirname(rutaSalida));
+  validarMatriz(matriz);
+  const dims = obtenerDimensiones(matriz);
+  const png = new PNG({
+    width: dims.columnas,
+    height: dims.filas
+  });
   
-  // 6. Guardar el archivo
-  // const buffer = PNG.sync.write(png);
-  // fs.writeFileSync(rutaSalida, buffer);
+  for (let y = 0; y < dims.filas; y++) {
+    for (let x = 0; x < dims.columnas; x++) {
+      const idx = (dims.columnas * y + x) << 2;
+      const pixel = matriz[y][x];
+      
+      png.data[idx] = limitarValorColor(pixel.r);
+      png.data[idx + 1] = limitarValorColor(pixel.g);
+      png.data[idx + 2] = limitarValorColor(pixel.b);
+      png.data[idx + 3] = limitarValorColor(pixel.a);
+    }
+  }
   
-  // ESCRIBE TU CÓDIGO AQUÍ
+  asegurarDirectorio(path.dirname(rutaSalida));
+  const buffer = PNG.sync.write(png);
+  fs.writeFileSync(rutaSalida, buffer);
 }
 
 /**
