@@ -2,9 +2,11 @@
 
 ## 👨‍💻 Información del Estudiante
 
-- **Nombre:** [francisco]
-- **Matrícula:** [Tu matrícula]
-- **Grupo:** [A/B/C]
+## 👨‍💻 Información del Estudiante
+
+- **Nombre:** [Francisco Emilio Esquivel Torres]
+- **Matrícula:** [SW2509046]
+- **Grupo:** [B]
 - **Cuatrimestre:** Primer Cuatrimestre
 - **Carrera:** TSU en Desarrollo e Innovación de Software
 - **Profesor:** Jorge Javier Pedrozo Romero
@@ -84,7 +86,7 @@ Este repositorio contiene mi solución a la práctica de **Fundamentos de Progra
 └────────────────────────────────────────┘
 ```
 
-![Tests](../../actions/workflows/test.yml/badge.svg)
+![Tests](https://github.com/Emipipipop/editor-imagenes-matricial.git)
 
 ---
 
@@ -230,8 +232,8 @@ git log --oneline --graph --decorate
 
 ## 📧 Contacto
 
-- **Email Institucional:** [tu-correo@institucional.edu.mx]
-- **GitHub:** [@TU-USUARIO](https://github.com/TU-USUARIO)
+- **Email Institucional:** [r3xEmilio@hotmail.com]
+- **GitHub:** [Emipipipop](https://github.com/Emipipipop)
 
 ---
 
