@@ -2,8 +2,6 @@
 
 ## 👨‍💻 Información del Estudiante
 
-## 👨‍💻 Información del Estudiante
-
 - **Nombre:** [Francisco Emilio Esquivel Torres]
 - **Matrícula:** [SW2509046]
 - **Grupo:** [B]
@@ -86,7 +84,7 @@ Este repositorio contiene mi solución a la práctica de **Fundamentos de Progra
 └────────────────────────────────────────┘
 ```
 
-![Tests](https://github.com/Emipipipop/editor-imagenes-matricial.git)
+![Tests](https://github.com/Emipipipop/editor-imagenes-matricial/actions/workflows/test.yml/badge.svg)
 
 ---
 
@@ -247,6 +245,6 @@ Este proyecto es parte de las actividades académicas del **Tecnológico de Soft
 
 **⭐ Si te gustó este proyecto, dale una estrella ⭐**
 
-Hecho con 💙 por [Tu Nombre] - 2025
+Hecho con 💙 por [Francisco Emilio Esquivel Torres] - 2025
 
 </div>
